@@ -8,7 +8,9 @@
 #include <typeinfo>
 #include <typeindex>
 
-using namespace std;
+using std::variant;
+using std::string;
+using std::exception;
 
 class Anytype
 {
@@ -33,7 +35,10 @@ class Anytype
 		template<class T>
 		Anytype(T obj)
 		{
-			if (!strcmp(typeid(obj).name(), "int") || !strcmp(typeid(obj).name(), "double") || !strcmp(typeid(obj).name(), "char") || !strcmp(typeid(obj).name(), "bool"))
+			if (!strcmp(typeid(obj).name(), "int") || 
+				!strcmp(typeid(obj).name(), "double") || 
+				!strcmp(typeid(obj).name(), "char") || 
+				!strcmp(typeid(obj).name(), "bool"))
 			{
 				this->buffer = obj;
 			}
@@ -54,11 +59,12 @@ class Anytype
 		Anytype& operator+= (T& data)
 		{
 
-			if (!strcmp(typeid(data).name(), "int") || !strcmp(typeid(data).name(), "double"))
+			if (!strcmp(typeid(data).name(), "int") 
+				|| !strcmp(typeid(data).name(), "double"))
 			{
 				if (this->buffer.index() < 2)
 				{
-					this->buffer = get<T>(buffer) + data;
+					this->buffer = std::get<T>(buffer) + data;
 					return *this;
 				}
 				else
@@ -71,11 +77,12 @@ class Anytype
 		template<class T>
 		Anytype& operator-= (T& data)
 		{
-			if (!strcmp(typeid(data).name(), "int") || !strcmp(typeid(data).name(), "double"))
+			if (!strcmp(typeid(data).name(), "int") 
+				|| !strcmp(typeid(data).name(), "double"))
 			{
 				if (this->buffer.index() < 2)
 				{
-					this->buffer = get<T>(buffer) - data;
+					this->buffer = std::get<T>(buffer) - data;
 					return *this;
 				}
 				else
@@ -89,11 +96,12 @@ class Anytype
 		template<class T>
 		Anytype& operator*= (T& data)
 		{
-			if (!strcmp(typeid(data).name(), "int") || !strcmp(typeid(data).name(), "double"))
+			if (!strcmp(typeid(data).name(), "int") 
+				|| !strcmp(typeid(data).name(), "double"))
 			{
 				if (this->buffer.index() < 2)
 				{
-					this->buffer = get<T>(buffer) * data;
+					this->buffer = std::get<T>(buffer) * data;
 					return *this;
 				}
 				else
@@ -106,11 +114,12 @@ class Anytype
 		template<class T>
 		Anytype& operator/= (T& data)
 		{
-			if (!strcmp(typeid(data).name(), "int") || !strcmp(typeid(data).name(), "double"))
+			if (!strcmp(typeid(data).name(), "int") || 
+				!strcmp(typeid(data).name(), "double"))
 			{
 				if (this->buffer.index() < 2)
 				{
-					this->buffer = get<T>(buffer) / data;
+					this->buffer = std::get<T>(buffer) / data;
 					return *this;
 				}
 				else
@@ -122,7 +131,7 @@ class Anytype
 
 		void swap(Anytype& obj);
 
-		inline friend std::ostream& operator<<(std::ostream& out, const Anytype& obj);
+		friend std::ostream& operator<<(std::ostream& out, const Anytype& obj);
 
 		int ToInt() const; 
 
@@ -133,11 +142,10 @@ class Anytype
 		bool ToBool() const;
 	};
 
-	std::ostream& operator<<(std::ostream& out, const Anytype& obj)
+	/*std::ostream& operator<<(std::ostream& out, const Anytype& obj)
 	{
 		out << obj.buffer;
 		return out;
-	}
-
+	}*/
 
 #endif

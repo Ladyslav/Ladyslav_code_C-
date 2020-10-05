@@ -7,12 +7,9 @@ int main()
 	{
 		int tmp = 0;
 		int b = 10;
-		Anytype a;
-		Anytype c;
-		a = b;
-		tmp = a.ToInt();
-		std::cout << tmp;
-		c = a;
+		Anytype a(b);
+		Anytype c(a);
+
 		tmp = c.ToInt();
 		std::cout << tmp;
 	}

@@ -34,43 +34,48 @@ int Anytype::ToInt() const
 {
 	if (this->buffer.index() == 0)
 	{
-		int tmp = get<int>(buffer);
+		int tmp = std::get<int>(buffer);
 		return tmp;
 	}
 	else
-		throw bad_cast();
+		throw std::bad_cast();
 }
 
 double Anytype::ToDouble() const
 {
 	if (this->buffer.index() == 1)
 	{
-		double tmp = get<double>(buffer);
+		double tmp = std::get<double>(buffer);
 		return tmp;
 	}
 	else
-		throw bad_cast();
+		throw std::bad_cast();
 }
 
 char Anytype::ToChar() const
 {
 	if (this->buffer.index() == 2)
 	{
-		char tmp = get<char>(buffer);
+		char tmp = std::get<char>(buffer);
 		return tmp;
 	}
 	else
-		throw bad_cast();
+		throw std::bad_cast();
 }
 
 bool Anytype::ToBool()const
 {
 	if (this->buffer.index() == 3)
 	{
-		bool tmp = get<bool>(buffer);
+		bool tmp = std::get<bool>(buffer);
 		return tmp;
 	}
 	else
-		throw bad_cast();
+		throw std::bad_cast();
 }
 
+std::ostream& operator<<(std::ostream& out, const Anytype& obj)
+{
+	out << obj.buffer;
+	return out;
+}
