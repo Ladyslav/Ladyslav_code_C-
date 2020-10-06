@@ -148,3 +148,9 @@ public:
 }*/
 
 #endif
+
+// Line 128: The 'throw' keyword could be missing: throw bad_cast()
+// Line 130: Non-void function should return a value.
+// Line 27, Line 29 Anytype(string obj) = delete; Use reference as a method parameter.
+// Line 36, Use reference as a method parameter. (T& obj)  
+// Line 38, Please create a separate variable for 'typeid(obj).name()', it is code duplicate. 
