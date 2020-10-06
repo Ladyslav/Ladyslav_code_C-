@@ -16,7 +16,7 @@ class Anytype
 {
 private:
 
-	variant<int, double, char, bool> buffer;
+	std::variant<int, double, char, bool> buffer;
 
 public:
 
@@ -24,16 +24,16 @@ public:
 
 	~Anytype();
 
-	Anytype(string obj) = delete;
+	Anytype(string& obj) = delete;
 
-	Anytype& operator=(string obj) = delete;
+	Anytype& operator=(string& obj) = delete;
 
 	Anytype(const Anytype&& obj) = delete;
 
 	Anytype(const Anytype& obj);
 
 	template<class T>
-	Anytype(T obj)
+	Anytype(T& obj)
 	{
 		if (!strcmp(typeid(obj).name(), "int") ||
 			!strcmp(typeid(obj).name(), "double") ||
@@ -125,8 +125,7 @@ public:
 			else
 				throw std::bad_cast();
 		}
-		else std::bad_cast();
-
+		else throw std::bad_cast();
 	}
 
 	void swap(Anytype& obj);
