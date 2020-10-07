@@ -35,10 +35,11 @@ public:
 	template<class T>
 	Anytype(T& obj)
 	{
-		if (!strcmp(typeid(obj).name(), "int") ||
-			!strcmp(typeid(obj).name(), "double") ||
-			!strcmp(typeid(obj).name(), "char") ||
-			!strcmp(typeid(obj).name(), "bool"))
+		const char* tmp = typeid(obj).name();
+		if (!strcmp(tmp, "int") ||
+			!strcmp(tmp, "double") ||
+			!strcmp(tmp, "char") ||
+			!strcmp(tmp, "bool"))
 		{
 			this->buffer = obj;
 		}
@@ -58,9 +59,9 @@ public:
 	template<class T>
 	Anytype& operator+= (T& data)
 	{
-
-		if (!strcmp(typeid(data).name(), "int")
-			|| !strcmp(typeid(data).name(), "double"))
+		const char* tmp = typeid(obj).name();
+		if (!strcmp(tmp, "int")
+			|| !strcmp(tmp, "double"))
 		{
 			if (this->buffer.index() < 2)
 			{
@@ -77,8 +78,9 @@ public:
 	template<class T>
 	Anytype& operator-= (T& data)
 	{
-		if (!strcmp(typeid(data).name(), "int")
-			|| !strcmp(typeid(data).name(), "double"))
+		const char* tmp = typeid(obj).name();
+		if (!strcmp(tmp, "int")
+			|| !strcmp(tmp, "double"))
 		{
 			if (this->buffer.index() < 2)
 			{
@@ -96,8 +98,9 @@ public:
 	template<class T>
 	Anytype& operator*= (T& data)
 	{
-		if (!strcmp(typeid(data).name(), "int")
-			|| !strcmp(typeid(data).name(), "double"))
+		const char* tmp = typeid(obj).name();
+		if (!strcmp(tmp, "int")
+			|| !strcmp(tmp, "double"))
 		{
 			if (this->buffer.index() < 2)
 			{
@@ -114,8 +117,9 @@ public:
 	template<class T>
 	Anytype& operator/= (T& data)
 	{
-		if (!strcmp(typeid(data).name(), "int") ||
-			!strcmp(typeid(data).name(), "double"))
+		const char* tmp = typeid(obj).name();
+		if (!strcmp(tmp, "int") ||
+			!strcmp(tmp, "double"))
 		{
 			if (this->buffer.index() < 2)
 			{
