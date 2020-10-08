@@ -32,10 +32,13 @@ public:
 
 	Anytype(const Anytype& obj);
 
+	Anytype& operator=(Anytype& obj);
+
 	template<class T>
-	Anytype(T& obj)
+	Anytype(T obj)
 	{
 		const char* tmp = typeid(obj).name();
+	
 		if (!strcmp(tmp, "int") ||
 			!strcmp(tmp, "double") ||
 			!strcmp(tmp, "char") ||
@@ -47,8 +50,6 @@ public:
 
 	};
 
-	Anytype& operator=(Anytype& obj);
-
 	template<class T>
 	Anytype& operator= (T& data)
 	{
@@ -59,7 +60,8 @@ public:
 	template<class T>
 	Anytype& operator+= (T& data)
 	{
-		const char* tmp = typeid(obj).name();
+		const char* tmp = typeid(data).name();
+
 		if (!strcmp(tmp, "int")
 			|| !strcmp(tmp, "double"))
 		{
@@ -78,7 +80,8 @@ public:
 	template<class T>
 	Anytype& operator-= (T& data)
 	{
-		const char* tmp = typeid(obj).name();
+		const char* tmp = typeid(data).name();
+
 		if (!strcmp(tmp, "int")
 			|| !strcmp(tmp, "double"))
 		{
@@ -98,7 +101,8 @@ public:
 	template<class T>
 	Anytype& operator*= (T& data)
 	{
-		const char* tmp = typeid(obj).name();
+		const char* tmp = typeid(data).name();
+
 		if (!strcmp(tmp, "int")
 			|| !strcmp(tmp, "double"))
 		{
@@ -117,7 +121,7 @@ public:
 	template<class T>
 	Anytype& operator/= (T& data)
 	{
-		const char* tmp = typeid(obj).name();
+		const char* tmp = typeid(data).name();
 		if (!strcmp(tmp, "int") ||
 			!strcmp(tmp, "double"))
 		{
@@ -143,6 +147,7 @@ public:
 	char ToChar() const;
 
 	bool ToBool() const;
+
 };
 
 /*std::ostream& operator<<(std::ostream& out, const Anytype& obj)
