@@ -3,18 +3,18 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include <exception>
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/foreach.hpp>
 #include <sstream>
 
 
-class Parcer_Interface
+class IConfigParcer
 {
+public:
 	//virtual void FileFormatCheck() = 0;
-	virtual void Deserialization() = 0;
-	virtual void Serialization() = 0;
+	virtual bool Deserialization() = 0;
+	virtual bool Serialization() = 0;
 };
 
 

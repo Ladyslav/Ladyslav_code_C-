@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Parcer_XML.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="XmlConfigParcer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Parcer_XML.h">
+    <ClInclude Include="IConfigParcer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interface_Parcer.h">
+    <ClInclude Include="XmlConfigParcer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
