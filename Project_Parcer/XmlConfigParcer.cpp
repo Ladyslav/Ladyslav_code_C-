@@ -81,7 +81,7 @@ bool XmlConfigParcer::Serialization()
 
 bool XmlConfigParcer::GetServerInfo(ServerInfo& obj) const
 {
-	if (0)
+	if (!CheckServerValues())
 	{
 		return false;
 	}
@@ -94,7 +94,7 @@ bool XmlConfigParcer::GetServerInfo(ServerInfo& obj) const
 
 bool XmlConfigParcer::GetLoggerInfo(LoggerInfo& obj) const
 {
-	if (0)
+	if (!CheckLoggerValues())
 	{
 		return false;
 	}
@@ -105,9 +105,66 @@ bool XmlConfigParcer::GetLoggerInfo(LoggerInfo& obj) const
 	}
 }
 
-bool XmlConfigParcer::CheckValues() const
+bool XmlConfigParcer::PutServerInfo(const ServerInfo& obj)
 {
-	return false;
+	Reset();
+	this->Server.m_server_name = obj.m_server_name;
+	this->Server.m_server_display_name = obj.m_server_display_name;
+	this->Server.m_listen_port = obj.m_listen_port;
+	this->Server.m_period_time = obj.m_period_time;
+	this->Server.m_socket_timeout = obj.m_socket_timeout;
+	this->Server.m_max_working_threads = obj.m_max_working_threads;
+	this->Server.m_blocking = obj.m_blocking;
+	return true;
+}
+
+bool XmlConfigParcer::PutLoggerInfo(const LoggerInfo& obj)
+{
+	Reset();
+	this->Logger.m_file_name = obj.m_file_name;
+	this->Logger.m_log_level = obj.m_log_level;
+	this->Logger.m_flush = obj.m_flush;
+	return true;
+}
+
+bool XmlConfigParcer::CheckServerValues() const
+{
+	if (Server.m_server_name == "" 
+		|| Server.m_server_display_name == ""
+		|| Server.m_listen_port == 0 
+		|| Server.m_period_time == 0
+		|| Server.m_socket_timeout == 0 
+		|| Server.m_max_working_threads == 0 
+		|| Server.m_blocking > 1)
+		return false;
+	else
+		return true;
+
+}
+
+bool XmlConfigParcer::CheckLoggerValues() const
+{
+	if (Logger.m_file_name == "" || Logger.m_log_level > 3 || Logger.m_flush > 1)
+		return false;
+	else
+		return true;
+}
+
+bool XmlConfigParcer::Reset()
+{
+	this->Server.m_server_name = "";
+	this->Server.m_server_display_name = "";
+	this->Server.m_listen_port = 0;
+	this->Server.m_period_time = 0;
+	this->Server.m_socket_timeout = 0;
+	this->Server.m_max_working_threads = 0;
+	this->Server.m_blocking = false;
+
+	this->Logger.m_file_name = "";
+	this->Logger.m_log_level = 0;
+	this->Logger.m_flush = false;
+
+	return true;
 }
 
 void XmlConfigParcer::show() const

@@ -37,10 +37,15 @@ public:
 
 	bool Deserialization() override;
 	bool Serialization() override;
+
 	bool GetServerInfo(ServerInfo& obj) const;
 	bool GetLoggerInfo(LoggerInfo& obj) const;
+	bool PutServerInfo(const ServerInfo& obj);
+	bool PutLoggerInfo(const LoggerInfo& obj);
 
-	bool CheckValues() const;
+	bool CheckServerValues() const;
+	bool CheckLoggerValues() const;
+	bool Reset();
 
 	void show() const;
 };
