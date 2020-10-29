@@ -1,29 +1,28 @@
 ﻿#include "XmlConfigParcer.h"
 
-//Один из вариантов для использования 
 //constexpr std::string_view server = "Server";
 
-constexpr char root[] = "root";
+const std::string root = "root";
 
-constexpr char server[] = "Server";
-constexpr char servername[] = "servername";
-constexpr char serverdisplayname[] = "serverdisplayname";
-constexpr char listenerport[] = "listenerport";
+const std::string server = "Server";
+const std::string servername = "servername";
+const std::string serverdisplayname = "serverdisplayname";
+const std::string listenerport = "listenerport";
 
-constexpr char communicationsettings[] = "communicationsettings";
-constexpr char blocking[] = "blocking";
-constexpr char socket_timeout[] = "socket_timeout";
+const std::string communicationsettings = "communicationsettings";
+const std::string blocking = "blocking";
+const std::string socket_timeout = "socket_timeout";
 
-constexpr char logging[] = "logging";
-constexpr char filename[] = "filename";
-constexpr char LogLevel[] = "LogLevel";
-constexpr char flush[] = "flush";
+const std::string logging = "logging";
+const std::string filename = "filename";
+const std::string LogLevel = "LogLevel";
+const std::string flush = "flush";
 
-constexpr char Time[] = "time";
-constexpr char period_time[] = "Period_time";
+const std::string Time = "time";
+const std::string period_time = "Period_time";
 
-constexpr char threadpool[] = "threadpool";
-constexpr char maxworkingthreads[] = "maxworkingthreads";
+const std::string threadpool = "threadpool";
+const std::string maxworkingthreads = "maxworkingthreads";
 
 
 bool XmlConfigParcer::Deserialization() 
